@@ -1,7 +1,7 @@
 <h2><?=$title ?></h2>
 <?=validation_errors(); ?>
 <?php
-if(isset($posts)) { var_dump($posts);
+if(isset($posts)) {
     echo form_open('testapi/edit/'.$posts->slug);   //, 'method="put"'
 
     echo form_hidden('id', $posts->id);

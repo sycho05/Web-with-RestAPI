@@ -52,7 +52,9 @@
                 'id' => (int)$this->input->post('id'),
                 'slug' => $this->input->post('slug'),
                 'title' => $this->input->post('title'),
-                'body' => $this->input->post('body')
+                'body' => $this->input->post('body'),
+                'created_at' => $this->input->post('created_at')
+
             ));
             // die($api_url);
 
