@@ -51,6 +51,11 @@
             }
 
         }
+        public function delete($slug){
+            $this->load->model('post_api_model');
+            $result = $this->post_api_model->delete_post($slug);
+            redirect('testapi'); 
+        }
 
         public function edit($slug = false) {
             $data['title'] = ucfirst('edit post');
@@ -72,10 +77,10 @@
             } else {
                 $result = $this->post_api_model->update_post(); //Proses update postingan
 
-                if ($result)
+                // if ($result)
                     redirect('testapi');                        //Update sukses
-                else
-                    show_error('Update GAGAL');
+                // else
+                    // show_error('Update GAGAL');
             }
 
         }

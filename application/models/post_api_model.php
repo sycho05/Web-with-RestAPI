@@ -41,7 +41,40 @@
             curl_close($curl);
             // var_dump($response);
             // die();
-            return ($response->status==200) ? true:false;
+            if ($response->status == 200) {
+                $this->session->set_flashdata('success', "Respond Status: $response->status; Message: $response->message");
+                return true;
+            }
+            else {
+                $this->session->set_flashdata('error', "Respond Status: $response->status; Message: $response->message");
+                return false;               
+            }
+        }
+        public function delete_post($slug) {
+            $api_url = "http://localhost:8889/posts/delete_slug/$slug";
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => $api_url,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'DELETE',
+                ),
+            );
+            
+            $response= json_decode(curl_exec($curl));
+
+            curl_close($curl);
+            // var_dump($response);
+            // die();
+            if ($response->status == 200) {
+                $this->session->set_flashdata('success', "Respond Status: $response->status; Message: $response->message");
+                return true;
+            }
+            else {
+                $this->session->set_flashdata('error', "Respond Status: $response->status; Message: $response->message");
+                return false;               
+            }
         }
 
         public function update_post() {
@@ -75,6 +108,14 @@
             curl_close($curl);
             // var_dump($response);
             // die();
-            return ($response->status==200) ? true:false;
+            if ($response->status == 200) {
+                $this->session->set_flashdata('success', "Respond Status: $response->status; Message: $response->message");
+                return true;
+            }
+            else {
+                $this->session->set_flashdata('error', "Respond Status: $response->status; Message: $response->message");
+                return false;               
+            }
         }
+
     }
