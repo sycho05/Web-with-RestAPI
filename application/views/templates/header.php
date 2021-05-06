@@ -17,18 +17,52 @@
 			</li>
 		<li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>">Home</a></li>
 		<!-- <li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>">Posts</a></li> -->
-		<li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>testapi">Posts (API)</a></li>
 		<li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>about">About</a></li>
+
+	<?php if($this->session->userdata('username')): ?>
+	<li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>testapi">Posts (API)</a></li>
 		<li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>testapi/create">Create</a></li>
+		<li class="nav-item"><a class="btn btn-danger" type="button" href="<?= base_url(); ?>logout">Logout</a></li>
+    <?php else: ?>
+        <li class="nav-item"><a class="btn btn-secondary" type="button" href="<?= base_url(); ?>login">Login</a></li>
+    <?php endif ?>
 			</li>
 		</ul>
 	</div>
 </nav>
+
 <div class="container">
-		<div id="flash_messages" >
-				<?php if($this->session->flashdata('success')) : ?><div style="margin: 1em; padding: 1em;" class="alert alert-dismissible alert-success"><?=$this->session->flashdata('success'); ?></div><?php endif?>
-				<?php if($this->session->flashdata('error'))   : ?><div style="margin: 1em; padding: 1em;" class="alert alert-dismissible alert-danger"><?=$this->session->flashdata('error'); ?></div><?php endif?>
-				<?php if($this->session->flashdata('warning')) : ?><div style="margin: 1em; padding: 1em;" class="alert alert-dismissible alert-warning"><?=$this->session->flashdata('warning'); ?></div><?php endif?>
-				<?php if($this->session->flashdata('info'))    : ?><div style="margin: 1em; padding: 1em;" class="alert alert-dismissible alert-secondary"><?=$this->session->flashdata('info'); ?></div><?php endif?>
-				</div>
+        <div id="flash_messages" >
+            <?php if($this->session->flashdata('success')) : ?>
+                <div style="margin: 1em; padding: 1em;" class="alert alert-dismissible alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <?=$this->session->flashdata('success'); ?>
+                </div>
+            <?php endif?>
+            <?php if($this->session->flashdata('error'))   : ?>
+                <div style="margin: 1em; padding: 1em;" class="alert alert-dismissible alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <?=$this->session->flashdata('error'); ?>
+                </div>
+            <?php endif?>
+            <?php if($this->session->flashdata('warning')) : ?>
+                <div style="margin: 1em; padding: 1em;" class="alert alert-dismissible alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <?=$this->session->flashdata('warning'); ?>
+                </div>
+            <?php endif?>
+            <?php if($this->session->flashdata('info'))    : ?>
+                <div style="margin: 1em; padding: 1em;" class="alert alert-dismissible alert-secondary">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <?=$this->session->flashdata('info'); ?>
+                </div>
+            <?php endif?>
+        </div>
+
+        <?php if(!empty(validation_errors())) : ?>
+        <div style="margin: 1em; padding: 1em;" id="validation_message" class="alert alert-dismissible alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <?=validation_errors(); ?>
+        </div>
+        <?php endif ?>
 

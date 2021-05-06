@@ -1,3 +1,7 @@
+<?php
+    if(!$this->session->userdata('username')) redirect('login','refresh');
+?>
+
 <h2><?=$title ?></h2>
 <?=validation_errors(); ?>
 <?php
@@ -6,7 +10,7 @@ if(isset($posts)) {
 
     echo form_hidden('id', $posts->id);
     echo form_hidden('slug', $posts->slug);
-    echo form_hidden('created_at', $posts->created_at);
+    echo form_hidden('created', $posts->created);
 }
 else {
     echo form_open('testapi/create');

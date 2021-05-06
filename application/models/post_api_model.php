@@ -86,7 +86,8 @@
                 'slug' => $this->input->post('slug'),
                 'title' => $this->input->post('title'),
                 'body' => $this->input->post('body'),
-                'created_at' => $this->input->post('created_at')
+                'created' => $this->input->post('created'),
+                'userid' => $this->input->post('userid')
 
             ));
             // die($api_url);

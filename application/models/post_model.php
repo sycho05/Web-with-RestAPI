@@ -9,7 +9,7 @@
 
         public function get_posts($slug = FALSE) {
             if($slug === FALSE){
-                $this->db->order_by('created_at', 'DESC');      //Mengurutkan Table (Posts) dg field 'created_at' secara menurun 
+                $this->db->order_by('created', 'DESC');      //Mengurutkan Table (Posts) dg field 'created_at' secara menurun 
                 $query = $this->db->get('posts');
 
                 // $query = $dbOracle->get();

@@ -1,5 +1,8 @@
+<?php
+    if(!$this->session->userdata('username')) redirect('login','refresh');
+?>
 <h2><?=$title ?></h2>
-<small><?= $posts->created_at ?></small>
+<small><?= $posts->created ?></small>
 <div class="post-body">
     <?= $posts->body ?>
 </div>

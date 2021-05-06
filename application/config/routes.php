@@ -51,11 +51,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'pages/view';
 
+$route['login'] = 'login/index';
+$route['logout'] = 'login/logout';
+
 $route['testapi/create'] = 'testapi/create';
 $route['testapi/(:any)'] = 'testapi/view/$1';
 $route['testapi'] = 'testapi/index';
-
-
 
 $route['posts'] = 'posts/index';
 $route['posts/create'] = 'posts/create';
