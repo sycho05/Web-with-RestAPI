@@ -11,9 +11,11 @@ if(isset($posts)) {
     echo form_hidden('id', $posts->id);
     echo form_hidden('slug', $posts->slug);
     echo form_hidden('created', $posts->created);
+    echo form_hidden('userid', $posts->userid);
 }
 else {
     echo form_open('testapi/create');
+    echo form_hidden('userid', $this->session->userdata('id'));
 }
 ?>
     <div class="form-group">

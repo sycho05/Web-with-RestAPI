@@ -21,7 +21,8 @@
             $data = json_encode(array(
                 'title' => $this->input->post('title'),
                 'body' => $this->input->post('body'),
-                'slug' => $this->input->post('title') . '-' . mdate('%Y%m%d%H%i%s', time())    //membuat Slug Key dengan menambahkan tanggal dan waktu saat ini ke Title
+                'slug' => $this->input->post('title') . '-' . mdate('%Y%m%d%H%i%s', time()),
+                'userid'=> $this->input->post('userid',true)   //membuat Slug Key dengan menambahkan tanggal dan waktu saat ini ke Title
             ));
             print_r($data);
             $curl = curl_init();
@@ -87,8 +88,7 @@
                 'title' => $this->input->post('title'),
                 'body' => $this->input->post('body'),
                 'created' => $this->input->post('created'),
-                'userid' => $this->input->post('userid')
-
+                'userid'=> $this->input->post('userid',true),
             ));
             // die($api_url);
 
@@ -118,5 +118,18 @@
                 return false;               
             }
         }
+        public function get_posts_userid($userid = FALSE){
+            $api_url =("http://localhost:8889/posts/get_userid/$userid");
+
+            $svcGet = curl_init($api_url);
+            curl_setopt($svcGet, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($svcGet);
+            curl_close($svcGet);
+        
+            $result = json_decode($response);
+
+            return $result;
+    }
+        
 
     }

@@ -10,10 +10,12 @@
         }
 
         public function index () {
-            $data['title'] = ucfirst('latest posts');
-
-            $data['posts'] = $this->post_api_model->get_posts();
-
+            $data['title'] = ucwords('latest posts');
+            
+            $userid = $this->session->userdata('id');
+           
+            // $data['posts'] = $this->post_api_model->get_posts();
+            $data['posts'] = $this->post_api_model->get_posts_userid($userid);
             $this->load->view('templates/header');
             ($data['posts']) ? $this->load->view('testapi/index', $data) : show_404();
             $this->load->view('templates/footer');

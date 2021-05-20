@@ -4,8 +4,8 @@
         public function request_login() {
             //Menyiapkan Record baru ke dalam sebuah array
             $userEmail = $this->input->post('userEmail', true);
-            $userPass = md5($this->input->post('userPass', true));
-            
+            $userPass = ($this->input->post('userPass', true));
+
             $api_url = "http://localhost:8889/users/get_by_email/$userEmail";
 
             $curl = curl_init();
@@ -42,7 +42,8 @@
                 $this->session->set_userdata('email', $response->email);
                 $this->session->set_userdata('username', $response->username);
                 $this->session->set_userdata('password', $response->password);
-            
+                // $this->session->set_userdata('userid', $response->userid);
+
                 return true;
             }
             else {
